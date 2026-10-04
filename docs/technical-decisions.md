@@ -16,7 +16,7 @@ an installable web app (PWA) with an Android share target for text and links.
 debounced screenshot bursts, paced replies, tests) and tried live in October 2026. Neither provider
 can be used without a registered business:
 
-- **Twilio:** trial accounts get a template-only "Try out WhatsApp" flow — inbound messages reach
+- **Twilio:** trial accounts get a template-only "Try out WhatsApp" flow: inbound messages reach
   the webhook, but every reply must be one of Twilio's fixed templates (`ContentSid` required,
   TwiML replies unsupported). The classic sandbox with free-form replies needs a paid account.
 - **Meta Cloud API (free test number):** inbound messages arrived and Jaanch's replies were
@@ -43,8 +43,8 @@ future deployment by a verified business.
 | `@jaanch/db`      | Postgres access (pg or embedded PGlite), migrations, repositories, queue                                                                                              | core                          |
 | `@jaanch/sources` | SEBI registers, RBI Alert List, RDAP adapters + ingestion                                                                                                             | core, db                      |
 | `@jaanch/llm`     | NVIDIA NIM reader/extractor/narrator, Riva ASR                                                                                                                        | core                          |
-| `@jaanch/server`  | Config, HTTP, channels, worker, CLI — the composition root                                                                                                            | all                           |
-| `@jaanch/web`     | React app (types only from core)                                                                                                                                      | —                             |
+| `@jaanch/server`  | Config, HTTP, channels, worker, CLI; the composition root                                                                                                             | all                           |
+| `@jaanch/web`     | React app (types only from core)                                                                                                                                      | n/a                           |
 
 **Why.** The workload is small and bursty; a single service is cheapest to run (free tiers),
 simplest to operate, and the package boundaries keep a later split (e.g. a separate worker) a
@@ -60,7 +60,7 @@ no queries while idle (`WORKER_POLL_MS=0`).
 
 **Alternatives.** Synchronous request handling (an investigation takes 30–90 s; holding
 an HTTP request that long is fragile on free hosting and gives no progress); Redis + BullMQ (another service to run and pay for); a polling
-worker (keeps a serverless database awake — on Neon's free plan, polling around the clock would
+worker (keeps a serverless database awake; on Neon's free plan, polling around the clock would
 exhaust the monthly compute allowance mid-month).
 
 **Why.** Durable, multi-worker-safe, zero extra infrastructure, and friendly to scale-to-zero
@@ -69,11 +69,11 @@ databases. It also gives the web page live progress per stage.
 ## 4. PostgreSQL everywhere; embedded Postgres (PGlite) for development and tests
 
 **Decision.** Production uses PostgreSQL (Neon recommended). Without `DATABASE_URL`, the server
-uses PGlite — real Postgres compiled to WebAssembly — so development and tests need no setup and
+uses PGlite (real Postgres compiled to WebAssembly), so development and tests need no setup and
 run the _same SQL and migrations_. Migrations are hand-written SQL, applied in order and recorded.
 
 **Alternatives.** SQLite for development (a second SQL dialect to keep in sync); an ORM (adds a
-layer without solving anything we need — the queries are few and explicit).
+layer without solving anything we need; the queries are few and explicit).
 
 **Verified.** The full repository test suite runs on both PGlite and a real Postgres 17 instance.
 
@@ -123,7 +123,7 @@ supported) over gRPC. Model IDs are configuration (`LLM_VISION_MODEL`, `LLM_TEXT
 - **The free API catalog's trial terms prohibit production use and personal data, and allow
   NVIDIA to log inputs.** It is appropriate for this prototype with synthetic or redacted
   screenshots only. For real users, point `NVIDIA_BASE_URL` at a self-hosted NIM or a partner
-  endpoint with appropriate terms, or add another provider adapter — the engine is unaffected.
+  endpoint with appropriate terms, or add another provider adapter. The engine is unaffected.
 
 ## 8. Structured extraction, grounded; models never decide
 
@@ -137,20 +137,20 @@ supported) over gRPC. Model IDs are configuration (`LLM_VISION_MODEL`, `LLM_TEXT
    the model is unavailable and are merged with model output.
 5. Verdicts are computed by pure functions (`packages/core/src/adjudicate`) from claims, retrieved
    evidence and the rule table.
-6. The optional narrative is written from rendered facts only — never from the message — and is
+6. The optional narrative is written from rendered facts only (never from the message) and is
    rejected unless every number and identifier already appears in the facts and it contains no
    safety label, accusation or investment instruction.
 
 ## 9. Four verdicts, defined precisely
 
-| Verdict      | Meaning                                                                                              | Can be produced by                                                                       |
-| ------------ | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| CONTRADICTED | An official record or a cited rule positively shows something different from what the message claims | Registry records, inactive-registration list, rule table — only from clearly read inputs |
-| MATCHES      | An official record positively confirms the claim as the message states it                            | Registry records, contact comparison                                                     |
-| NOT FOUND    | The source that should contain it was searched and has no such record                                | Registry snapshot/live search                                                            |
-| CAN'T CHECK  | No source, source unavailable, unclear input, ambiguous binding, or a claim about the future         | Everything else                                                                          |
+| Verdict      | Meaning                                                                                              | Can be produced by                                                                      |
+| ------------ | ---------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| CONTRADICTED | An official record or a cited rule positively shows something different from what the message claims | Registry records, inactive-registration list, rule table; only from clearly read inputs |
+| MATCHES      | An official record positively confirms the claim as the message states it                            | Registry records, contact comparison                                                    |
+| NOT FOUND    | The source that should contain it was searched and has no such record                                | Registry snapshot/live search                                                           |
+| CAN'T CHECK  | No source, source unavailable, unclear input, ambiguous binding, or a claim about the future         | Everything else                                                                         |
 
-There is no overall score, rating, or "safe/scam" label anywhere — in the data model, the API or
+There is no overall score, rating, or "safe/scam" label anywhere: not in the data model, the API or
 the UI. Headlines summarise claim verdicts with fixed precedence.
 
 **Channel binding.** A registration claim is checked as "does the party contacting you correspond
@@ -175,7 +175,7 @@ current to ("as on"), when Jaanch retrieved it, and whether it is stale (SEBI sn
 Actions.
 
 **Not used:** NSE/BSE caution notices (published as PDFs/press releases without a machine-readable
-list; scraping NSE is actively blocked), SEBI Check (captcha-protected web form — we link users to
+list; scraping NSE is actively blocked), SEBI Check (captcha-protected web form; we link users to
 it instead), AMFI's undocumented API, general web search (not authoritative).
 
 ## 11. Explanations from templates, in English and Hindi
@@ -185,7 +185,7 @@ English and Hindi versions written by hand. Values (names, numbers, dates, quote
 verbatim, so translation can never change a fact. The type system and a test enforce that both
 languages have every key and the same placeholders.
 
-**Alternative rejected.** Machine-translating model output at request time — fluent but
+**Alternative rejected.** Machine-translating model output at request time: fluent but
 unverifiable, and it can change meaning.
 
 ## 12. Free-tier hosting topology

@@ -2,8 +2,8 @@
 
 **Paste it. Jaanch investigates it.**
 
-Jaanch is a website that checks the claims in an investment message — pasted text, chat
-screenshots, a link or a voice note — against India's official records before you send money.
+Jaanch is a website that checks the claims in an investment message (pasted text, chat
+screenshots, a link or a voice note) against India's official records before you send money.
 Every claim gets a verdict backed by evidence you can open on the regulator's own website. In
 English and Hindi.
 
@@ -25,7 +25,7 @@ of SEBI's registers and rules that most retail investors don't have.
   **SEBI's list of cancelled/suspended registrations**, **SEBI's rules** (cited to the circular and
   clause), **RBI's Alert List** and **domain records**.
 - Decides each claim with fixed rules: **CONTRADICTED · MATCHES · NOT FOUND · CAN'T CHECK**.
-- Shows _who is contacting you_ next to _who is registered_ — name, number, phone, email, website.
+- Shows _who is contacting you_ next to _who is registered_: name, number, phone, email, website.
 - Says plainly what it **could not check**.
 - Routes people who **already paid** to 1930, cybercrime.gov.in, their bank and a UPI complaint,
   with a copyable evidence summary.
@@ -34,13 +34,13 @@ of SEBI's registers and rules that most retail investors don't have.
 
 > **"The registration number is real. It just isn't theirs."**
 >
-> _Message:_ "Sharma Investments — SEBI Registered Research Analyst — Reg No: INH000011431"
+> _Message:_ "Sharma Investments / SEBI Registered Research Analyst / Reg No: INH000011431"
 >
-> **CONTRADICTED** — The message says INH000011431 belongs to Sharma Investments. SEBI's register
-> shows INH000011431 is registered to 360 ONE Distribution Services Limited (Mumbai) — a
+> **CONTRADICTED**: The message says INH000011431 belongs to Sharma Investments. SEBI's register
+> shows INH000011431 is registered to 360 ONE Distribution Services Limited (Mumbai), a
 > different name.
 
-Jaanch checks whether the _party contacting you_ is the _party the record belongs to_ — not only
+Jaanch checks whether the _party contacting you_ is the _party the record belongs to_, not only
 whether a number exists. (Live output from a screenshot of the demo pitch, about 30 seconds.)
 
 ## How it works
@@ -71,7 +71,7 @@ flowchart LR
 - No account, no app install; installable web app with an Android share target.
 
 Why web-only: a WhatsApp channel was built and tested, but both providers require a verified or
-paid business account — see [docs/technical-decisions.md](docs/technical-decisions.md). The code
+paid business account (see [docs/technical-decisions.md](docs/technical-decisions.md)). The code
 remains, off by default.
 
 ## Architecture
@@ -185,10 +185,10 @@ A 3:30 product demo script with dialogue, screen actions, recording setup and ed
 - More Indian languages, with hand-reviewed templates per language.
 - A WhatsApp channel once a verified business account is available (adapters already built).
 - Anonymous, aggregate signals (e.g. which registration numbers are being impersonated) shared
-  with regulators — without personal data.
+  with regulators, without personal data.
 
 ## Contributors
 
-- **Dhruv Sharma** — [github.com/spiritsfuse](https://github.com/spiritsfuse) · product direction and the brief that shaped Jaanch
-- **Anushika Chauhan** — [github.com/anushika06](https://github.com/anushika06)
-- **Pratyush Mishra** — [github.com/PratyushMishra-2nd](https://github.com/PratyushMishra-2nd)
+- **Dhruv Sharma**: [github.com/spiritsfuse](https://github.com/spiritsfuse) · product direction and the brief that shaped Jaanch
+- **Anushika Chauhan**: [github.com/anushika06](https://github.com/anushika06)
+- **Pratyush Mishra**: [github.com/PratyushMishra-2nd](https://github.com/PratyushMishra-2nd)

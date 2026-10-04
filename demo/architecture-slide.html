@@ -1,0 +1,517 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>How Jaanch decides</title>
+    <!--
+      Demo video asset (segment 7). A fixed 1920×1080 slide that scales to fit the window:
+      open it in Chrome, press F11, record. demo/screenshots/architecture.png is a capture of it.
+    -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anek+Devanagari:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --paper: #f1f4f2;
+        --surface: #ffffff;
+        --ink: #18202e;
+        --ink-2: #47526a;
+        --ink-3: #6b7489;
+        --rule: #d6dee5;
+        --neel: #22306e;
+        --neel-tint: #e6eaf6;
+        --sindoor: #b4261c;
+        --sindoor-tint: #fbe9e7;
+        --violet: #5a3e9c;
+        --violet-tint: #eee9f7;
+        --haldi: #8f6200;
+        --haldi-tint: #fbf1da;
+        --graphite: #56607a;
+        --graphite-tint: #e9ecf1;
+        --shadow:
+          0 1px 1px hsl(228 35% 22% / 0.05), 0 4px 6px hsl(228 35% 22% / 0.05),
+          0 12px 20px hsl(228 35% 22% / 0.06);
+        --font: 'Anek Devanagari', 'Nirmala UI', system-ui, sans-serif;
+        --mono: 'IBM Plex Mono', Consolas, monospace;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        height: 100%;
+        background: var(--paper);
+        overflow: hidden;
+      }
+      body {
+        display: grid;
+        place-items: center;
+        font-family: var(--font);
+        color: var(--ink);
+      }
+      .slide {
+        width: 1920px;
+        height: 1080px;
+        flex: none;
+        padding: 72px 96px 64px;
+        display: flex;
+        flex-direction: column;
+        transform-origin: center;
+        background: var(--paper);
+      }
+      header {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+      }
+      .eyebrow {
+        font-family: var(--mono);
+        font-size: 22px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--neel);
+      }
+      h1 {
+        margin: 6px 0 0;
+        font-size: 68px;
+        line-height: 1.05;
+        font-weight: 700;
+        letter-spacing: -0.01em;
+      }
+      .brand {
+        font-size: 34px;
+        font-weight: 700;
+        color: var(--neel);
+      }
+      .brand span {
+        color: var(--ink-3);
+        font-weight: 500;
+      }
+
+      /* Pipeline */
+      .flow {
+        margin-top: 56px;
+        display: grid;
+        grid-template-columns: 1fr 64px 1.25fr 64px 1.1fr 64px 1fr;
+        align-items: stretch;
+      }
+      .stage {
+        background: var(--surface);
+        border: 1px solid var(--rule);
+        border-radius: 14px;
+        box-shadow: var(--shadow);
+        padding: 30px 30px 28px;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+      .stage.ai {
+        border-top: 6px solid var(--violet);
+      }
+      .stage.tools {
+        border-top: 6px solid var(--neel);
+      }
+      .stage.code {
+        border-top: 6px solid var(--ink);
+      }
+      .tag {
+        align-self: flex-start;
+        font-family: var(--mono);
+        font-size: 17px;
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        padding: 4px 10px;
+        border-radius: 4px;
+      }
+      .ai .tag {
+        background: var(--violet-tint);
+        color: var(--violet);
+      }
+      .tools .tag {
+        background: var(--neel-tint);
+        color: var(--neel);
+      }
+      .code .tag {
+        background: var(--graphite-tint);
+        color: var(--ink);
+      }
+      .stage h2 {
+        margin: 0;
+        font-size: 44px;
+        line-height: 1;
+        font-weight: 700;
+      }
+      .stage p {
+        margin: 0;
+        font-size: 24px;
+        line-height: 1.35;
+        color: var(--ink-2);
+      }
+      .num {
+        font-family: var(--mono);
+        font-size: 20px;
+        color: var(--ink-3);
+      }
+      .arrow {
+        display: grid;
+        place-items: center;
+      }
+      .arrow svg {
+        width: 46px;
+        height: 46px;
+        color: var(--ink-3);
+      }
+
+      .sources {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        margin-top: 4px;
+      }
+      .src {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        background: var(--neel-tint);
+        border-radius: 8px;
+        padding: 10px 12px;
+        font-size: 20px;
+        line-height: 1.15;
+        font-weight: 600;
+        color: var(--neel);
+      }
+      .src svg {
+        width: 30px;
+        height: 30px;
+        flex: none;
+      }
+      .src small {
+        display: block;
+        font-weight: 400;
+        font-size: 16px;
+        color: var(--ink-2);
+      }
+
+      .verdicts {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-top: 4px;
+      }
+      .v {
+        font-family: var(--mono);
+        font-weight: 600;
+        font-size: 19px;
+        letter-spacing: 0.04em;
+        padding: 7px 12px;
+        border: 2px solid currentColor;
+        border-radius: 5px;
+        align-self: flex-start;
+        transform: rotate(-1.2deg);
+      }
+      .v.c {
+        color: var(--sindoor);
+        background: var(--sindoor-tint);
+      }
+      .v.m {
+        color: var(--violet);
+        background: var(--violet-tint);
+      }
+      .v.n {
+        color: var(--haldi);
+        background: var(--haldi-tint);
+      }
+      .v.x {
+        color: var(--graphite);
+        background: var(--graphite-tint);
+      }
+      .lang {
+        display: flex;
+        gap: 8px;
+      }
+      .lang span {
+        font-size: 22px;
+        font-weight: 600;
+        border: 1px solid var(--rule);
+        border-radius: 6px;
+        padding: 4px 12px;
+        background: var(--paper);
+      }
+
+      /* Rule line under the pipeline */
+      .rule {
+        margin-top: 36px;
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        font-size: 30px;
+        font-weight: 600;
+      }
+      .rule .bar {
+        flex: 1;
+        height: 2px;
+        background: var(--rule);
+      }
+      .rule em {
+        font-style: normal;
+        color: var(--sindoor);
+      }
+
+      /* Privacy strip */
+      .privacy {
+        margin-top: auto;
+        display: flex;
+        align-items: center;
+        gap: 28px;
+        background: var(--ink);
+        color: #e8ecf3;
+        border-radius: 14px;
+        padding: 26px 36px;
+      }
+      .privacy svg {
+        width: 52px;
+        height: 52px;
+        flex: none;
+        color: #fff;
+      }
+      .privacy b {
+        font-size: 28px;
+        white-space: nowrap;
+      }
+      .privacy ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px 32px;
+        font-size: 23px;
+        color: #c9d1de;
+      }
+      .privacy li::before {
+        content: '✓ ';
+        color: #9fb4ff;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="slide" id="slide">
+      <header>
+        <div>
+          <div class="eyebrow">How Jaanch decides</div>
+          <h1>The AI reads. Official records decide.</h1>
+        </div>
+        <div class="brand">Jaanch <span>· जाँच</span></div>
+      </header>
+
+      <div class="flow">
+        <!-- 1 -->
+        <section class="stage ai">
+          <span class="tag">AI</span>
+          <div class="num">01</div>
+          <h2>LLM reads</h2>
+          <p>Screenshot, text or voice note → a word-for-word transcript and a list of claims.</p>
+          <p>Any quote or number not found in the message is <b>thrown away</b>.</p>
+        </section>
+
+        <div class="arrow" aria-hidden="true">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M4 12h15M13 6l6 6-6 6" />
+          </svg>
+        </div>
+
+        <!-- 2 -->
+        <section class="stage tools">
+          <span class="tag">OFFICIAL SOURCES</span>
+          <div class="num">02</div>
+          <h2>Tools verify</h2>
+          <div class="sources">
+            <div class="src">
+              <!-- building with columns: register -->
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M3 9l9-5 9 5" />
+                <path d="M5 9v9M9.5 9v9M14.5 9v9M19 9v9" />
+                <path d="M3 20h18" />
+              </svg>
+              <div>SEBI registers<small>12 categories, daily + live</small></div>
+            </div>
+            <div class="src">
+              <!-- shield with x: cancelled -->
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M12 3l8 3v6c0 4.5-3.4 8.2-8 9-4.6-.8-8-4.5-8-9V6l8-3z" />
+                <path d="M9.5 9.5l5 5M14.5 9.5l-5 5" />
+              </svg>
+              <div>SEBI cancelled list<small>suspended / cancelled</small></div>
+            </div>
+            <div class="src">
+              <!-- warning triangle: alert list -->
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M12 3.5L2.5 20h19L12 3.5z" />
+                <path d="M12 10v4.5M12 17.5v.01" />
+              </svg>
+              <div>RBI Alert List<small>unauthorised forex / apps</small></div>
+            </div>
+            <div class="src">
+              <!-- document with section mark: circulars -->
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M14 3H6.5A1.5 1.5 0 005 4.5v15A1.5 1.5 0 006.5 21h11a1.5 1.5 0 001.5-1.5V8l-5-5z"
+                />
+                <path d="M14 3v5h5" />
+                <path d="M9 13h6M9 16.5h6M9 9.5h2" />
+              </svg>
+              <div>SEBI circulars<small>rules, cited by clause</small></div>
+            </div>
+            <div class="src" style="grid-column: span 2">
+              <!-- globe: domain records -->
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="12" cy="12" r="9" />
+                <path
+                  d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"
+                />
+              </svg>
+              <div>Domain records (RDAP)<small>website age and registrar</small></div>
+            </div>
+          </div>
+        </section>
+
+        <div class="arrow" aria-hidden="true">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M4 12h15M13 6l6 6-6 6" />
+          </svg>
+        </div>
+
+        <!-- 3 -->
+        <section class="stage code">
+          <span class="tag">FIXED CODE · NO AI</span>
+          <div class="num">03</div>
+          <h2>Code decides</h2>
+          <p>Same input, same verdict, every time.</p>
+          <div class="verdicts">
+            <span class="v c">CONTRADICTED</span>
+            <span class="v m">MATCHES</span>
+            <span class="v n">NOT FOUND</span>
+            <span class="v x">CAN'T CHECK</span>
+          </div>
+        </section>
+
+        <div class="arrow" aria-hidden="true">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M4 12h15M13 6l6 6-6 6" />
+          </svg>
+        </div>
+
+        <!-- 4 -->
+        <section class="stage ai">
+          <span class="tag">AI + TEMPLATES</span>
+          <div class="num">04</div>
+          <h2>LLM explains</h2>
+          <p>Reviewed templates with the record's values inserted exactly.</p>
+          <div class="lang"><span>English</span><span>हिंदी</span></div>
+          <p>Report with evidence links, what it couldn't check, and next steps.</p>
+        </section>
+      </div>
+
+      <div class="rule">
+        <span
+          >The AI <em>never</em> decides a verdict. Blurry screenshot → “can't check”, not a
+          guess.</span
+        >
+        <span class="bar"></span>
+      </div>
+
+      <div class="privacy">
+        <!-- lock -->
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <rect x="4.5" y="10.5" width="15" height="10" rx="2" />
+          <path d="M8 10.5V7.5a4 4 0 018 0v3" />
+          <path d="M12 14.5v2.5" />
+        </svg>
+        <b>Private by design</b>
+        <ul>
+          <li>Screenshots deleted once read</li>
+          <li>No account, no OTP, no bank details</li>
+          <li>IP addresses never stored</li>
+          <li>Reports auto-delete in 7 days</li>
+          <li>No score, no investment advice</li>
+        </ul>
+      </div>
+    </div>
+    <script>
+      const slide = document.getElementById('slide');
+      function fit() {
+        const s = Math.min(innerWidth / 1920, innerHeight / 1080);
+        slide.style.transform = `scale(${s})`;
+      }
+      addEventListener('resize', fit);
+      fit();
+    </script>
+  </body>
+</html>

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Architecture — Jaanch</title>
+<title>Architecture · Jaanch</title>
 <style>
   :root { --paper:#f1f4f2; --ink:#18202e; --ink2:#47526a; --rule:#d3dce4; --neel:#22306e; --surface:#fff; }
   @media (prefers-color-scheme: dark) { :root { --paper:#0f1420; --ink:#e8ecf3; --ink2:#a9b3c6; --rule:#2a3346; --neel:#9fb0ff; --surface:#161d2b; } }
@@ -103,7 +103,7 @@ Language models only read and (optionally) summarise; they never decide.</p>
   READ --&gt; MODEL[Model extraction&lt;br/&gt;JSON, schema-validated]
   MODEL --&gt; CLAIMS
   CLAIMS[Claim building&lt;br/&gt;every quote and identifier grounded in the transcript&lt;br/&gt;ungrounded model output discarded] --&gt; PLAN
-  PLAN[Plan and verify&lt;br/&gt;registry by number / by name, inactive list,&lt;br/&gt;alert list, domain age — with timeouts] --&gt; ADJ
+  PLAN[Plan and verify&lt;br/&gt;registry by number / by name, inactive list,&lt;br/&gt;alert list, domain age, with timeouts] --&gt; ADJ
   ADJ[Adjudicate&lt;br/&gt;pure functions + rule table&lt;br/&gt;CONTRADICTED / MATCHES / NOT FOUND / CAN'T CHECK] --&gt; EXPL
   EXPL[Explain&lt;br/&gt;templates EN/HI, evidence, next steps&lt;br/&gt;optional model summary behind a guard] --&gt; OUT
   OUT[Report&lt;br/&gt;stored 7 days] --&gt; CH[Web report view&lt;br/&gt;EN / HI]</pre><p>Which steps involve a model:</p>
@@ -210,7 +210,7 @@ logic. The API (<code>apps/server/src/channels/web</code>):</p>
   Q-&gt;&gt;E: run
   E--&gt;&gt;Q: report stored (7 days)
   B-&gt;&gt;A: GET report view (EN or HI), evidence summary, recovery page
-  B-&gt;&gt;A: DELETE (owner token) — report erased immediately</pre><p>A WhatsApp channel (<code>apps/server/src/channels/whatsapp</code>: Meta Cloud API and Twilio adapters with
+  B-&gt;&gt;A: DELETE (owner token): report erased immediately</pre><p>A WhatsApp channel (<code>apps/server/src/channels/whatsapp</code>: Meta Cloud API and Twilio adapters with
 signed webhooks) is in the codebase but off (<code>WHATSAPP_PROVIDER=none</code>); both providers require a
 verified or paid business account. See <a href="technical-decisions.md">technical-decisions.md</a>.</p>
 <h2>Data model and retention</h2>

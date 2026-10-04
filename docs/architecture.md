@@ -62,7 +62,7 @@ flowchart TD
   READ --> MODEL[Model extraction<br/>JSON, schema-validated]
   MODEL --> CLAIMS
   CLAIMS[Claim building<br/>every quote and identifier grounded in the transcript<br/>ungrounded model output discarded] --> PLAN
-  PLAN[Plan and verify<br/>registry by number / by name, inactive list,<br/>alert list, domain age — with timeouts] --> ADJ
+  PLAN[Plan and verify<br/>registry by number / by name, inactive list,<br/>alert list, domain age, with timeouts] --> ADJ
   ADJ[Adjudicate<br/>pure functions + rule table<br/>CONTRADICTED / MATCHES / NOT FOUND / CAN'T CHECK] --> EXPL
   EXPL[Explain<br/>templates EN/HI, evidence, next steps<br/>optional model summary behind a guard] --> OUT
   OUT[Report<br/>stored 7 days] --> CH[Web report view<br/>EN / HI]
@@ -118,7 +118,7 @@ sequenceDiagram
   Q->>E: run
   E-->>Q: report stored (7 days)
   B->>A: GET report view (EN or HI), evidence summary, recovery page
-  B->>A: DELETE (owner token) — report erased immediately
+  B->>A: DELETE (owner token): report erased immediately
 ```
 
 A WhatsApp channel (`apps/server/src/channels/whatsapp`: Meta Cloud API and Twilio adapters with

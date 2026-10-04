@@ -13,17 +13,17 @@ first-time investor from Indore, appears only through her screen.
 
 ## Links and files
 
-| What                       | Where                                                                                      |
-| -------------------------- | ------------------------------------------------------------------------------------------ |
-| Jaanch website (live)      | **https://jaanch-api.onrender.com/** (Render serves both the website and the API)           |
-| Health check (wakes it up) | https://jaanch-api.onrender.com/healthz                                                    |
-| Data freshness             | https://jaanch-api.onrender.com/api/v1/sources (SEBI `asOf` should be today or yesterday) |
-| Fake WhatsApp chat (EN)    | `file:///C:/Codeing/Jaanch/demo/chat-mock.html#scam-en`                                    |
-| Fake WhatsApp chat (HI)    | `file:///C:/Codeing/Jaanch/demo/chat-mock.html#scam-hi`                                    |
-| Screenshot to upload (EN)  | `C:\Codeing\Jaanch\demo\screenshots\scam-en.png`                                           |
-| Screenshot to upload (HI)  | `C:\Codeing\Jaanch\demo\screenshots\scam-hi.png`                                           |
-| Architecture diagram       | `file:///C:/Codeing/Jaanch/docs/architecture.html` (first diagram; screenshot it)          |
-| Report / "already paid"    | `https://jaanch-api.onrender.com/r/<id>` and `https://jaanch-api.onrender.com/r/<id>/paid` |
+| What                       | Where                                                                                                        |
+| -------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| Jaanch website (live)      | **https://jaanch-api.onrender.com/** (Render serves both the website and the API)                            |
+| Health check (wakes it up) | https://jaanch-api.onrender.com/healthz                                                                      |
+| Data freshness             | https://jaanch-api.onrender.com/api/v1/sources (SEBI `asOf` should be today or yesterday)                    |
+| Fake WhatsApp chat (EN)    | `file:///C:/Codeing/Jaanch/demo/chat-mock.html#scam-en`                                                      |
+| Fake WhatsApp chat (HI)    | `file:///C:/Codeing/Jaanch/demo/chat-mock.html#scam-hi`                                                      |
+| Screenshot to upload (EN)  | `C:\Codeing\Jaanch\demo\screenshots\scam-en.png`                                                             |
+| Screenshot to upload (HI)  | `C:\Codeing\Jaanch\demo\screenshots\scam-hi.png`                                                             |
+| Architecture slide         | `file:///C:/Codeing/Jaanch/demo/architecture-slide.html` (press F11), or `demo\screenshots\architecture.png` |
+| Report / "already paid"    | `https://jaanch-api.onrender.com/r/<id>` and `https://jaanch-api.onrender.com/r/<id>/paid`                   |
 
 > `jaanch.vercel.app` is **not** this project. It is someone else's site. Don't use it or show it.
 
@@ -68,11 +68,11 @@ waiting for the server is cut out automatically, and you can record segments in 
 
 ### Tools (all built into Windows 11, free)
 
-| Job          | Tool                                                       | How                                                                                                                                                                                                                       |
-| ------------ | ---------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Job          | Tool                                                       | How                                                                                                                                                                                                 |
+| ------------ | ---------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Screen video | **Snipping Tool**, recording mode                          | **Win+Shift+R**, then drag across the whole screen, turn the mic **off**, and click **Start**. Click Stop when done. It saves an MP4 to `Videos\Screen Recordings`; rename it `seg3.mp4` and so on. |
-| Voice        | **Sound Recorder** app (type "Sound Recorder" in Start)    | One recording per segment. Mic 15–20 cm from your mouth, in a room with curtains or a bed (less echo), fan off.                                                                                                          |
-| Edit         | **Clipchamp** (in Start; sign in with a Microsoft account) | Import everything and build the timeline (see Edit steps below). Export at 1080p.                                                                                                                                        |
+| Voice        | **Sound Recorder** app (type "Sound Recorder" in Start)    | One recording per segment. Mic 15–20 cm from your mouth, in a room with curtains or a bed (less echo), fan off.                                                                                     |
+| Edit         | **Clipchamp** (in Start; sign in with a Microsoft account) | Import everything and build the timeline (see Edit steps below). Export at 1080p.                                                                                                                   |
 
 Loom also works for screen video, but its free plan limits length and quality, and the two-pass
 method makes its webcam and live mic unnecessary. Use **OBS Studio** only if Snipping Tool doesn't
@@ -119,14 +119,14 @@ plain green screen and place `scam-en.png` over it in Clipchamp.
    personal autofill. Turn off "Show bookmarks bar". Use page zoom 110–125% for desktop scenes.
 6. Open these tabs, in this order, in the guest window:
 
-| Tab | URL                                                     | Mode               | Used in segment |
-| --- | ------------------------------------------------------- | ------------------ | --------------- |
-| 1   | `file:///C:/Codeing/Jaanch/demo/chat-mock.html#scam-en` | Pixel 7 (DevTools) | 1, 2            |
-| 2   | https://jaanch-api.onrender.com/                        | Pixel 7 (DevTools) | 3               |
-| 3   | https://jaanch-api.onrender.com/                        | Desktop            | 4, 6            |
-| 4   | backup scam report `/r/<id>`                            | Pixel 7            | 3 (backup), 5   |
-| 5   | backup Hindi report `/r/<id>`                           | Desktop            | 6 (backup)      |
-| 6   | `file:///C:/Codeing/Jaanch/docs/architecture.html`      | Desktop            | 7               |
+| Tab | URL                                                      | Mode               | Used in segment |
+| --- | -------------------------------------------------------- | ------------------ | --------------- |
+| 1   | `file:///C:/Codeing/Jaanch/demo/chat-mock.html#scam-en`  | Pixel 7 (DevTools) | 1, 2            |
+| 2   | https://jaanch-api.onrender.com/                         | Pixel 7 (DevTools) | 3               |
+| 3   | https://jaanch-api.onrender.com/                         | Desktop            | 4, 6            |
+| 4   | backup scam report `/r/<id>`                             | Pixel 7            | 3 (backup), 5   |
+| 5   | backup Hindi report `/r/<id>`                            | Desktop            | 6 (backup)      |
+| 6   | `file:///C:/Codeing/Jaanch/demo/architecture-slide.html` | Desktop, F11       | 7               |
 
 DevTools device mode applies per tab. Turn it on in tabs 1, 2 and 4 separately.
 
@@ -158,14 +158,14 @@ DevTools device mode applies per tab. Turn it on in tabs 1, 2 and 4 separately.
 
 ### 3 · Live investigation (0:30–1:30). The core of the demo.
 
-| Time | Screen (tab ②, mobile view)                                                                                                                                         | Narrator                                                                                                                                         |
-| ---- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| 0:30 | Jaanch home page. Click **Add screenshots**, choose `scam-en.png`, click **Investigate**.                                                                            | "Before paying, Riya opens Jaanch. It's a website: no app, no sign-up. She uploads the screenshot."                                              |
-| 0:38 | The progress list ticks through each stage. **In the edit, speed up the wait to about 5 seconds** and add a small "sped up" label.                                     | "Jaanch reads the message, lists every claim in it and checks each one against official records."                                                 |
-| 0:45 | The report appears. Zoom in on the headline, then on the first stamp, **CONTRADICTED**: "SEBI's register shows INH000011431 is registered to 360 ONE … a different name." | "Claim one: the registration. The number exists, but SEBI's register shows it belongs to a different firm, one with no link to this message."     |
-| 1:00 | Scroll to: 🔍 NOT FOUND (no registered "Sharma Investments"), then the warnings about guaranteed returns, "100% accuracy" and the personal UPI ID.                     | "Guaranteed 30% a month: SEBI's rules bar registered analysts from promising returns. And registered firms collect money through verified UPI IDs, not personal ones." |
-| 1:12 | Click **Show evidence**. The SEBI entry appears, with an "Open the official source" link. Scroll to the table **Who is contacting you / who is registered**.          | "Every verdict links to SEBI's own website. This table is the heart of it: the same number with a different name."                               |
-| 1:22 | Scroll to **Could not check**.                                                                                                                                       | "It also says what it can't check. And there's no 'safe' score. If Jaanch finds no problem, it doesn't call the message safe."                     |
+| Time | Screen (tab ②, mobile view)                                                                                                                                               | Narrator                                                                                                                                                               |
+| ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 0:30 | Jaanch home page. Click **Add screenshots**, choose `scam-en.png`, click **Investigate**.                                                                                 | "Before paying, Riya opens Jaanch. It's a website: no app, no sign-up. She uploads the screenshot."                                                                    |
+| 0:38 | The progress list ticks through each stage. **In the edit, speed up the wait to about 5 seconds** and add a small "sped up" label.                                        | "Jaanch reads the message, lists every claim in it and checks each one against official records."                                                                      |
+| 0:45 | The report appears. Zoom in on the headline, then on the first stamp, **CONTRADICTED**: "SEBI's register shows INH000011431 is registered to 360 ONE … a different name." | "Claim one: the registration. The number exists, but SEBI's register shows it belongs to a different firm, one with no link to this message."                          |
+| 1:00 | Scroll to: 🔍 NOT FOUND (no registered "Sharma Investments"), then the warnings about guaranteed returns, "100% accuracy" and the personal UPI ID.                        | "Guaranteed 30% a month: SEBI's rules bar registered analysts from promising returns. And registered firms collect money through verified UPI IDs, not personal ones." |
+| 1:12 | Click **Show evidence**. The SEBI entry appears, with an "Open the official source" link. Scroll to the table **Who is contacting you / who is registered**.              | "Every verdict links to SEBI's own website. This table shows it plainly: the same number, a different name."                                                           |
+| 1:22 | Scroll to **Could not check**.                                                                                                                                            | "It also says what it can't check. And there's no 'safe' score. If Jaanch finds no problem, it doesn't call the message safe."                                         |
 
 **Edit:** Blur the contact email of the real registration holder in the next-steps section.
 
@@ -181,7 +181,7 @@ DevTools device mode applies per tab. Turn it on in tabs 1, 2 and 4 separately.
 - **Screen:** Back on the scam report (backup tab). Click **I already paid**. Show the large
   **Call 1930** button, cybercrime.gov.in, the bank and UPI complaint steps. Click **Copy evidence
   summary** and paste it into Notepad for 2 seconds.
-- **Narrator:** "If Riya has already paid, every minute counts. Jaanch never asks for her bank
+- **Narrator:** "If Riya has already paid, she should act fast. Jaanch never asks for her bank
   details or OTP. It tells her where to go, and gives her an evidence summary ready to attach to the
   complaint."
 
@@ -197,9 +197,10 @@ DevTools device mode applies per tab. Turn it on in tabs 1, 2 and 4 separately.
 
 ### 7 · How it works and why you can trust it (2:30–3:05)
 
-- **Screen:** The diagram from [architecture.md](architecture.md), exported as an image:
-  **LLM reads → tools verify → code decides → LLM explains**. Add icons for the SEBI registers, the
-  RBI Alert List, SEBI circulars and a lock for privacy.
+- **Screen:** `demo/architecture-slide.html` full screen (F11), or drop `demo/screenshots/architecture.png` straight into Clipchamp:
+  **LLM reads → tools verify → code decides → LLM explains**, with source icons and a privacy strip.
+  In the edit, zoom in slowly on each card as the narration reaches it, then pull back to the
+  privacy strip.
 - **Narrator:** "The AI only reads the message. Any quote it can't find in the message is
   discarded. Official sources do the checking: SEBI's 12 registers, refreshed daily, its cancelled
   list, RBI's Alert List and SEBI's rules with circular numbers. Fixed code, not AI, decides each
@@ -221,15 +222,15 @@ DevTools device mode applies per tab. Turn it on in tabs 1, 2 and 4 separately.
 
 ## How this covers the brief
 
-| Requirement / criterion            | Where                          |
-| ---------------------------------- | ------------------------------ |
-| Problem and target user            | 1, 2                           |
-| Working prototype, user journey    | 3, 4, 5                        |
-| Investor resilience and safety     | 3, 5                           |
-| Bharat-first (Hindi, voice, web)   | 3 (no app), 6                  |
-| Trust, privacy, guardrails         | 3 (no score), 5 (no OTP), 7    |
-| Technical architecture             | 7                              |
-| Impact and scalability             | 8                              |
+| Requirement / criterion          | Where                       |
+| -------------------------------- | --------------------------- |
+| Problem and target user          | 1, 2                        |
+| Working prototype, user journey  | 3, 4, 5                     |
+| Investor resilience and safety   | 3, 5                        |
+| Bharat-first (Hindi, voice, web) | 3 (no app), 6               |
+| Trust, privacy, guardrails       | 3 (no score), 5 (no OTP), 7 |
+| Technical architecture           | 7                           |
+| Impact and scalability           | 8                           |
 
 ## Edit checklist
 

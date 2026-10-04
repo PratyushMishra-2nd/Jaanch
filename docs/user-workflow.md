@@ -32,14 +32,14 @@ link can be bookmarked or shared; it works for 7 days.
 
 1. Headline (a summary of the claim verdicts, never an overall rating) and dates.
 2. Tally of verdicts.
-3. _In short_ — only when a model-written summary passed the safety guard.
-4. _What the message claims_ — one entry per claim: stamp, the claim in plain words, the exact
+3. _In short_: only when a model-written summary passed the safety guard.
+4. _What the message claims_: one entry per claim: stamp, the claim in plain words, the exact
    quote from the message, the explanation, caveats, and _Show evidence_ (official record fields,
    rule citations, links, as-of dates).
-5. _Who is contacting you, and who is registered_ — the channel-binding table.
-6. _Warning signs_ — by severity.
-7. _Could not check_ — always present when something wasn't checkable.
-8. _What to do next_ — numbered, with official links and tap-to-call numbers.
+5. _Who is contacting you, and who is registered_: the channel-binding table.
+6. _Warning signs_: by severity.
+7. _Could not check_: always present when something wasn't checkable.
+8. _What to do next_: numbered, with official links and tap-to-call numbers.
 9. _What we read from your message_ and _Sources checked for this report_ (collapsed).
 
 The language switch (top right) re-renders the same report in Hindi or English.
@@ -53,7 +53,7 @@ against the same live sources.
 Reachable from every report (**I already paid** button). It is routing, not a complaint
 portal, and collects nothing:
 
-1. Call **1930** (national helpline for reporting financial fraud) — tap to call.
+1. Call **1930** (national helpline for reporting financial fraud). Tap to call.
 2. File at **cybercrime.gov.in**; report the numbers, UPI IDs and links used.
 3. Tell your **bank** through the number on your card or passbook or the official app.
 4. Raise a **fraudulent transaction** complaint in your UPI app or on NPCI's UPI Help.
@@ -69,7 +69,7 @@ portal, and collects nothing:
 A genuine message is not flagged for using financial words. A mutual-fund SIP reminder with the
 standard "subject to market risks" disclaimer produces no claims and no warnings. A message from a
 registered firm that uses its registered name, its number and its official email domain produces
-**MATCHES** for the registration and **MATCHES** for the contact details — with the caveat that
+**MATCHES** for the registration and **MATCHES** for the contact details, with the caveat that
 details can be copied, and the could-not-check list still shown.
 
 ## 4. When something is unclear

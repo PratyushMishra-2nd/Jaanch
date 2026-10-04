@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Demo video — production script (4:00) — Jaanch</title>
+<title>Demo video: recording script (3:30) · Jaanch</title>
 <style>
   :root { --paper:#f1f4f2; --ink:#18202e; --ink2:#47526a; --rule:#d3dce4; --neel:#22306e; --surface:#fff; }
   @media (prefers-color-scheme: dark) { :root { --paper:#0f1420; --ink:#e8ecf3; --ink2:#a9b3c6; --rule:#2a3346; --neel:#9fb0ff; --surface:#161d2b; } }
@@ -26,255 +26,367 @@
 <body>
 <main>
 <p class="back"><a href="../README.md">Jaanch</a> · documentation</p>
-<h1>Demo video — production script (4:00)</h1>
-<p>A product demo, not a slide talk: the viewer watches a person use the Jaanch website on a real
-phone and a laptop, against live official data. Technical points come up only where the screen
-shows them.</p>
-<p><strong>Cast.</strong> <em>Narrator</em> (voice-over, calm, plain English with a few Hindi phrases). <em>Riya</em> — the
-person using the phone (hands only, or a face cam in the corner).</p>
-<p><strong>Screens.</strong> Phone screen recording (WhatsApp chat + mobile browser) mirrored to the laptop; laptop
-browser at <code>https://&lt;your-domain&gt;</code>; one architecture diagram (from
-<a href="architecture.html">architecture.md</a>).</p>
-<p><strong>Assets</strong> (in the repository):</p>
-<ul>
-<li><code>demo/screenshots/scam-en.png</code> — the &quot;Sharma Investments&quot; pitch (English)</li>
-<li><code>demo/screenshots/scam-hi.png</code> — the same pitch in Hindi</li>
-<li><code>demo/screenshots/institutional.png</code> — an &quot;institutional account / FPI / APK&quot; pitch</li>
-<li>The &quot;SIP reminder&quot; sample on the home page; optionally a genuine message the team received from
-its own broker or mutual fund.</li>
-</ul>
-<blockquote>
-<p><strong>About the registration number in the demo screenshots.</strong> <code>INH000011431</code> is a real, current
-SEBI registration (it belongs to 360 ONE Distribution Services Limited). It is used to show how
-impersonators borrow real numbers; the registered firm has no connection to these fictional
-messages. Say this on screen at 0:55. To use a different number, edit <code>demo/chat-mock.html</code> and
-re-capture the screenshots.</p>
-</blockquote>
+<h1>Demo video: recording script (3:30)</h1>
+<p>This is a product demo, not a slide talk. Everything is recorded on <strong>one laptop</strong>, in segments
+that are joined in the edit. The &quot;phone&quot; is the Jaanch website in Chrome&#39;s mobile view, so no
+phone mirroring is needed.</p>
+<p><strong>Cast.</strong> <em>Narrator</em> (voice-over, calm, plain English with a few Hindi words). <em>Riya</em>, a 24-year-old
+first-time investor from Indore, appears only through her screen.</p>
+<p><strong>Track:</strong> A, Digital Fraud &amp; Scam Resilience.</p>
 <hr>
-<h2>Pre-flight (30 minutes before recording)</h2>
-<ol>
-<li><strong>Warm the server:</strong> open <code>https://&lt;api&gt;/healthz</code> (free hosting sleeps after 15 minutes idle).
-If the web app is on Vercel, it loads instantly; the first investigation may still wait for
-the API to wake.</li>
-<li><strong>Fresh data:</strong> <code>GET /api/v1/sources</code> — SEBI categories should show today&#39;s or yesterday&#39;s date.
-If not: <code>POST /admin/ingest</code> with the admin token, wait a minute.</li>
-<li><strong>Dry run</strong> every segment once (this also warms the AI models). Note each report URL as a
-backup.</li>
-<li>Put <code>scam-en.png</code> in the phone&#39;s gallery (as if Riya had taken the screenshot herself) and
-<code>scam-hi.png</code> on the laptop.</li>
-<li>Phone: Do Not Disturb on, battery &gt; 50%, font size default. Browser: zoom 125%, one tab,
-bookmarks bar hidden, language English.</li>
-</ol>
-<hr>
-<h2>0:00 – 0:20 · Hook</h2>
+<h2>Links and files</h2>
 <table>
 <thead>
 <tr>
-<th></th>
-<th></th>
+<th>What</th>
+<th>Where</th>
 </tr>
 </thead>
 <tbody><tr>
-<td><strong>Screen</strong></td>
-<td>Black. Then the phone: a WhatsApp chat from &quot;Sharma Investments ✅&quot; scrolling slowly — &quot;SEBI Registered Research Analyst… Reg No: INH000011431… Guaranteed 30% monthly returns… Pay ₹4,999…&quot;.</td>
+<td>Jaanch website (live)</td>
+<td><strong><a href="https://jaanch-api.onrender.com/">https://jaanch-api.onrender.com/</a></strong> (Render serves both the website and the API)</td>
 </tr>
 <tr>
-<td><strong>Narrator</strong></td>
-<td>&quot;Last week, Riya got this message. It has a SEBI registration number. She checked — the number is real.&quot; <em>(beat)</em> &quot;It just isn&#39;t theirs.&quot;</td>
+<td>Health check (wakes it up)</td>
+<td><a href="https://jaanch-api.onrender.com/healthz">https://jaanch-api.onrender.com/healthz</a></td>
 </tr>
 <tr>
-<td><strong>On screen text</strong></td>
-<td>Large, centred over a dimmed chat: <strong>The registration number is real. It just isn&#39;t theirs.</strong></td>
+<td>Data freshness</td>
+<td><a href="https://jaanch-api.onrender.com/api/v1/sources">https://jaanch-api.onrender.com/api/v1/sources</a> (SEBI <code>asOf</code> should be today or yesterday)</td>
 </tr>
 <tr>
-<td><strong>Transition</strong></td>
-<td>Riya takes a screenshot of the chat.</td>
+<td>Fake WhatsApp chat (EN)</td>
+<td><code>file:///C:/Codeing/Jaanch/demo/chat-mock.html#scam-en</code></td>
 </tr>
 <tr>
-<td><strong>Viewer should notice</strong></td>
-<td>The pitch looks credible precisely because one part of it is true.</td>
+<td>Fake WhatsApp chat (HI)</td>
+<td><code>file:///C:/Codeing/Jaanch/demo/chat-mock.html#scam-hi</code></td>
+</tr>
+<tr>
+<td>Screenshot to upload (EN)</td>
+<td><code>C:\Codeing\Jaanch\demo\screenshots\scam-en.png</code></td>
+</tr>
+<tr>
+<td>Screenshot to upload (HI)</td>
+<td><code>C:\Codeing\Jaanch\demo\screenshots\scam-hi.png</code></td>
+</tr>
+<tr>
+<td>Architecture slide</td>
+<td><code>file:///C:/Codeing/Jaanch/demo/architecture-slide.html</code> (press F11), or <code>demo\screenshots\architecture.png</code></td>
+</tr>
+<tr>
+<td>Report / &quot;already paid&quot;</td>
+<td><code>https://jaanch-api.onrender.com/r/&lt;id&gt;</code> and <code>https://jaanch-api.onrender.com/r/&lt;id&gt;/paid</code></td>
 </tr>
 </tbody></table>
-<h2>0:20 – 1:35 · Live investigation on the phone</h2>
+<blockquote>
+<p><code>jaanch.vercel.app</code> is <strong>not</strong> this project. It is someone else&#39;s site. Don&#39;t use it or show it.</p>
+</blockquote>
+<p>Copy both PNGs into a folder <code>Desktop\demo</code> before recording, so the file picker opens in one click.</p>
+<hr>
+<h2>How to record</h2>
+<h3>Laptop or phone: laptop only</h3>
+<p>Record everything on the laptop. For the &quot;phone&quot; scenes, use Chrome&#39;s mobile view of the real
+site:</p>
+<ol>
+<li>Open the site and press <strong>F12</strong>, then <strong>Ctrl+Shift+M</strong>. Pick <strong>Pixel 7</strong> from the device list at
+the top and set the zoom there to 100%.</li>
+<li>Undock DevTools: in the DevTools ⋮ menu, choose <strong>Dock side → Undock into separate window</strong>, then
+minimise that window. The page stays in phone mode, and the Chrome window now shows only the
+phone.</li>
+</ol>
+<p>Recording an actual phone and moving the files across adds work and looks inconsistent. The mobile
+view is the same website and the same code.</p>
+<h3>Speaking and clicking at once: don&#39;t</h3>
+<p>Record in <strong>two passes</strong>. Editors call the second one a voice-over:</p>
+<ol>
+<li><strong>Pass 1, screen only, no talking.</strong> Do the clicks for one segment, slowly and calmly, with the
+mic off. Pause about a second on every important thing (a stamp, a table, a button).</li>
+<li><strong>Pass 2, voice only.</strong> Read that segment&#39;s narration into the mic. You aren&#39;t watching the
+screen, so read from the script. Do two or three takes and keep the best.</li>
+<li><strong>Edit.</strong> Put the voice on the timeline first. Then trim or speed up the video to fit the voice.
+The voice leads and the video follows.</li>
+</ol>
+<p>If two people are available, one can click while the other narrates live. The two-pass method is
+still easier to get right.</p>
+<h3>Segments or one continuous take: segments</h3>
+<p>Record <strong>one file per segment</strong> (eight segments, listed below). A mistake costs one short retake,
+waiting for the server is cut out automatically, and you can record segments in any order.</p>
+<h3>Tools (all built into Windows 11, free)</h3>
+<table>
+<thead>
+<tr>
+<th>Job</th>
+<th>Tool</th>
+<th>How</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Screen video</td>
+<td><strong>Snipping Tool</strong>, recording mode</td>
+<td><strong>Win+Shift+R</strong>, then drag across the whole screen, turn the mic <strong>off</strong>, and click <strong>Start</strong>. Click Stop when done. It saves an MP4 to <code>Videos\Screen Recordings</code>; rename it <code>seg3.mp4</code> and so on.</td>
+</tr>
+<tr>
+<td>Voice</td>
+<td><strong>Sound Recorder</strong> app (type &quot;Sound Recorder&quot; in Start)</td>
+<td>One recording per segment. Mic 15–20 cm from your mouth, in a room with curtains or a bed (less echo), fan off.</td>
+</tr>
+<tr>
+<td>Edit</td>
+<td><strong>Clipchamp</strong> (in Start; sign in with a Microsoft account)</td>
+<td>Import everything and build the timeline (see Edit steps below). Export at 1080p.</td>
+</tr>
+</tbody></table>
+<p>Loom also works for screen video, but its free plan limits length and quality, and the two-pass
+method makes its webcam and live mic unnecessary. Use <strong>OBS Studio</strong> only if Snipping Tool doesn&#39;t
+have recording on your machine (update it from the Microsoft Store first).</p>
+<p>Earphone mics with an in-line mic are fine. A laptop&#39;s built-in mic is acceptable in a quiet room.</p>
+<h3>Edit steps in Clipchamp</h3>
+<ol>
+<li>Make a new 16:9 video. Drag in all the segment MP4s and voice files.</li>
+<li>For each segment, place the voice clip first, then the matching screen clip above it.</li>
+<li>Cut dead time. Select a waiting stretch and use <strong>Speed</strong> (for example 4×) or split and delete
+it. Add the text &quot;sped up&quot; to the first wait.</li>
+<li>Zoom in on verdicts: select the clip, then use <strong>Crop</strong> or <strong>Zoom</strong> (scale up to 150–200% and
+centre on the stamp). Hold it while the narrator reads it.</li>
+<li>Text overlays: the hook line, &quot;Who it&#39;s for&quot;, and the closing card (use <strong>Text</strong> templates).</li>
+<li>Blur the registration holder&#39;s email on the report (<strong>Effects → Blur</strong> on a cropped overlay
+copy).</li>
+<li><strong>Captions → Auto captions</strong> (English), then fix the Hindi words by hand.</li>
+<li>Optional music from <strong>Content library → Audio</strong> at about 10% volume.</li>
+<li><strong>Export → 1080p</strong>. Watch it once on your phone before you submit.</li>
+</ol>
+<h3>The WhatsApp message</h3>
+<p>Use the chat mock (tab 1). <strong>Don&#39;t upload an AI-generated image.</strong> Image models garble small text
+such as &quot;INH000011431&quot; or the UPI ID, so Jaanch would read the wrong number and the main verdict
+would break. If you want a hand-held phone shot for the opening, generate a phone mockup with a
+plain green screen and place <code>scam-en.png</code> over it in Clipchamp.</p>
+<hr>
+<h2>Before you press record (30 minutes before)</h2>
+<ol>
+<li>Open <a href="https://jaanch-api.onrender.com/healthz">https://jaanch-api.onrender.com/healthz</a>. The free server sleeps after 15 minutes idle,
+and the first load can take about a minute.</li>
+<li>Open <a href="https://jaanch-api.onrender.com/api/v1/sources">https://jaanch-api.onrender.com/api/v1/sources</a> and check that the SEBI <code>asOf</code> dates are
+today or yesterday.</li>
+<li><strong>Dry run:</strong> upload <code>scam-en.png</code> once and <code>scam-hi.png</code> once (Hindi mode). Copy both report
+URLs (<code>/r/&lt;id&gt;</code>) into a note. These are your backups, and they warm up the AI models.</li>
+<li>Windows: turn on <strong>Do Not Disturb</strong> (notification bell → Do not disturb), close WhatsApp
+Desktop, Teams, mail and anything else that pops up, and hide the taskbar (taskbar settings →
+Automatically hide). Plug in the charger.</li>
+<li>Chrome: use a guest window (profile icon → <strong>Guest</strong>), so there are no bookmarks, extensions or
+personal autofill. Turn off &quot;Show bookmarks bar&quot;. Use page zoom 110–125% for desktop scenes.</li>
+<li>Open these tabs, in this order, in the guest window:</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Tab</th>
+<th>URL</th>
+<th>Mode</th>
+<th>Used in segment</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td><code>file:///C:/Codeing/Jaanch/demo/chat-mock.html#scam-en</code></td>
+<td>Pixel 7 (DevTools)</td>
+<td>1, 2</td>
+</tr>
+<tr>
+<td>2</td>
+<td><a href="https://jaanch-api.onrender.com/">https://jaanch-api.onrender.com/</a></td>
+<td>Pixel 7 (DevTools)</td>
+<td>3</td>
+</tr>
+<tr>
+<td>3</td>
+<td><a href="https://jaanch-api.onrender.com/">https://jaanch-api.onrender.com/</a></td>
+<td>Desktop</td>
+<td>4, 6</td>
+</tr>
+<tr>
+<td>4</td>
+<td>backup scam report <code>/r/&lt;id&gt;</code></td>
+<td>Pixel 7</td>
+<td>3 (backup), 5</td>
+</tr>
+<tr>
+<td>5</td>
+<td>backup Hindi report <code>/r/&lt;id&gt;</code></td>
+<td>Desktop</td>
+<td>6 (backup)</td>
+</tr>
+<tr>
+<td>6</td>
+<td><code>file:///C:/Codeing/Jaanch/demo/architecture-slide.html</code></td>
+<td>Desktop, F11</td>
+<td>7</td>
+</tr>
+</tbody></table>
+<p>DevTools device mode applies per tab. Turn it on in tabs 1, 2 and 4 separately.</p>
+<ol start="7">
+<li>Have Notepad open but minimised (for the evidence-summary paste in segment 5).</li>
+<li>Keep this script open on your phone, not the laptop, to read from during the voice pass.</li>
+</ol>
+<hr>
+<h2>Segments</h2>
+<h3>1 · Hook (0:00–0:15)</h3>
+<ul>
+<li><strong>Screen:</strong> Tab ①. The WhatsApp chat from &quot;Sharma Investments ✅&quot; scrolls slowly past the
+registration number, the &quot;Guaranteed 30% monthly&quot; line and the UPI ID.</li>
+<li><strong>Narrator:</strong> &quot;Riya, a first-time investor in Indore, got this on WhatsApp. It quotes a SEBI
+registration number. The number is real.&quot; <em>(beat)</em> &quot;It just isn&#39;t theirs.&quot;</li>
+<li><strong>Edit:</strong> In the last 3 seconds, dim the chat and show this text centred: <strong>The registration
+number is real. It just isn&#39;t theirs.</strong></li>
+</ul>
+<h3>2 · The problem (0:15–0:30)</h3>
+<ul>
+<li><strong>Screen:</strong> A plain title card, or stay on the dimmed chat.</li>
+<li><strong>Narrator:</strong> &quot;Pitches like this borrow credibility: a real registration number, guaranteed
+returns, a personal UPI ID, urgency. Checking them means knowing SEBI&#39;s registers and rules,
+which most new investors in Tier-2 and Tier-3 cities, and their parents, never learn.&quot;</li>
+<li><strong>On screen:</strong> <strong>Who it&#39;s for:</strong> first-time investors · regional-language users · families.</li>
+<li><em>(Optional: add one statistic, with its source shown on screen, from the I4C/NCRP or SEBI
+annual reports. Don&#39;t use numbers you can&#39;t cite.)</em></li>
+</ul>
+<h3>3 · Live investigation (0:30–1:30). The core of the demo.</h3>
 <table>
 <thead>
 <tr>
 <th>Time</th>
-<th>Screen action</th>
+<th>Screen (tab ②, mobile view)</th>
 <th>Narrator</th>
-<th>Notice</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>0:20</td>
-<td>Riya opens the Jaanch website on her phone, taps <strong>Add screenshot</strong>, picks the screenshot, taps <strong>Investigate</strong>.</td>
-<td>&quot;Before paying, Riya opens Jaanch. No app, no sign-up — she uploads the screenshot.&quot;</td>
-<td>One screen, one button.</td>
+<td>0:30</td>
+<td>Jaanch home page. Click <strong>Add screenshots</strong>, choose <code>scam-en.png</code>, click <strong>Investigate</strong>.</td>
+<td>&quot;Before paying, Riya opens Jaanch. It&#39;s a website: no app, no sign-up. She uploads the screenshot.&quot;</td>
 </tr>
 <tr>
-<td>0:28</td>
-<td>The progress list ticks through: reading the message → finding claims → checking official records → SEBI rules → writing the report.</td>
-<td>&quot;Jaanch reads the screenshot, lists every claim in it, and checks each one against official records.&quot;</td>
-<td>Each stage is shown; nothing is hidden.</td>
+<td>0:38</td>
+<td>The progress list ticks through each stage. <strong>In the edit, speed up the wait to about 5 seconds</strong> and add a small &quot;sped up&quot; label.</td>
+<td>&quot;Jaanch reads the message, lists every claim in it and checks each one against official records.&quot;</td>
 </tr>
 <tr>
 <td>0:45</td>
-<td>The report appears. Hold on the headline: <strong>The registration number is real. It just isn&#39;t theirs.</strong> Zoom on the first stamp: <strong>CONTRADICTED</strong> — &quot;The message says INH000011431 belongs to Sharma Investments. SEBI&#39;s register shows INH000011431 is registered to 360 ONE Distribution Services Limited (Mumbai) — a different name.&quot;</td>
-<td>&quot;First claim: the registration. The number exists — in SEBI&#39;s register it belongs to a different firm. That firm has nothing to do with this message; its number was borrowed.&quot;</td>
-<td>The wording reports the record; nobody is called a scammer.</td>
+<td>The report appears. Zoom in on the headline, then on the first stamp, <strong>CONTRADICTED</strong>: &quot;SEBI&#39;s register shows INH000011431 is registered to 360 ONE … a different name.&quot;</td>
+<td>&quot;Claim one: the registration. The number exists, but SEBI&#39;s register shows it belongs to a different firm, one with no link to this message.&quot;</td>
 </tr>
 <tr>
 <td>1:00</td>
-<td>Scroll: 🔍 NOT FOUND (no registered firm named Sharma Investments), ❌ guaranteed returns, ❌ UPI ID; warnings (guaranteed returns, 100% accuracy claim, personal UPI ID).</td>
-<td>&quot;Second: guaranteed 30% a month. SEBI&#39;s rules don&#39;t allow registered analysts to promise that. Third: SEBI-registered firms must collect money through verified &#39;@valid&#39; UPI IDs — this one is a personal ID.&quot;</td>
-<td>Each line cites a rule, not an opinion.</td>
+<td>Scroll to: 🔍 NOT FOUND (no registered &quot;Sharma Investments&quot;), then the warnings about guaranteed returns, &quot;100% accuracy&quot; and the personal UPI ID.</td>
+<td>&quot;Guaranteed 30% a month: SEBI&#39;s rules bar registered analysts from promising returns. And registered firms collect money through verified UPI IDs, not personal ones.&quot;</td>
 </tr>
 <tr>
 <td>1:12</td>
-<td>Scroll to <em>Could not check</em> and <em>What to do next</em>.</td>
-<td>&quot;And Jaanch is honest about what it can&#39;t check — who runs that Telegram group, or whether any return will ever be paid. Not finding a problem is never shown as safety.&quot;</td>
-<td>There is no overall &quot;safe&quot; or &quot;scam&quot; score anywhere.</td>
+<td>Click <strong>Show evidence</strong>. The SEBI entry appears, with an &quot;Open the official source&quot; link. Scroll to the table <strong>Who is contacting you / who is registered</strong>.</td>
+<td>&quot;Every verdict links to SEBI&#39;s own website. This table shows it plainly: the same number, a different name.&quot;</td>
 </tr>
 <tr>
-<td>1:20</td>
-<td>Tap <strong>Show evidence</strong> under the first claim: the SEBI register entry with name, number, validity, official email and phone, &quot;Open the official source&quot;. Scroll to <strong>Who is contacting you, and who is registered</strong>.</td>
-<td>&quot;Every verdict has evidence you can open on SEBI&#39;s own website. And this table is the heart of it: who is contacting you, versus who is registered. Same registration number — different name.&quot;</td>
-<td>The channel-binding table: Name <em>Different</em>, Registration <em>Same</em>.</td>
+<td>1:22</td>
+<td>Scroll to <strong>Could not check</strong>.</td>
+<td>&quot;It also says what it can&#39;t check. And there&#39;s no &#39;safe&#39; score. If Jaanch finds no problem, it doesn&#39;t call the message safe.&quot;</td>
 </tr>
 </tbody></table>
-<p><strong>Backup path:</strong> if the report takes longer than 60 seconds (a cold start or a slow model
-response), cut to the pre-recorded dry-run clip, then continue with the dry-run report URL.</p>
-<h2>1:35 – 2:10 · A legitimate message</h2>
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>Screen</strong></td>
-<td>Laptop, home page. Click the sample <strong>SIP reminder</strong> (&quot;Your SIP of Rs 5,000 in XYZ Flexi Cap Fund will be debited… subject to market risks&quot;). Click <strong>Investigate</strong>. Report: &quot;We didn&#39;t find investment claims to check in this message.&quot; No warnings.</td>
-</tr>
-<tr>
-<td><strong>Narrator</strong></td>
-<td>&quot;Does Jaanch flag everything that mentions money? No. A normal SIP reminder — with the usual market-risk disclaimer — raises nothing.&quot;</td>
-</tr>
-<tr>
-<td><strong>Then</strong></td>
-<td><em>(Optional, if the team has one)</em> paste a genuine message from your own broker or fund house that shows its registered name, number and official email. Report: ✅ <strong>MATCHES</strong> — &quot;SEBI&#39;s register lists … The name in the message matches&quot;, and the contact table shows <strong>Same domain</strong> for the email.</td>
-</tr>
-<tr>
-<td><strong>Narrator</strong></td>
-<td>&quot;And when a firm uses its own registered name, number and official contacts, the record matches — while Jaanch still reminds you that details can be copied.&quot;</td>
-</tr>
-<tr>
-<td><strong>Notice</strong></td>
-<td>MATCHES is evidence-based, never &quot;safe&quot;.</td>
-</tr>
-<tr>
-<td><strong>Backup</strong></td>
-<td>If the network is slow, show the dry-run report tab.</td>
-</tr>
-</tbody></table>
-<h2>2:10 – 2:40 · &quot;I already paid&quot;</h2>
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>Screen</strong></td>
-<td>Back on the phone report. Tap <strong>I already paid</strong>. The recovery page: a large <strong>Call 1930</strong> button, then cybercrime.gov.in, tell the bank, UPI fraud complaint, keep evidence, beware of &quot;recovery&quot; offers. Tap <strong>Copy evidence summary</strong>; paste it into a notes app to show the text: report id, time, each claim with what SEBI&#39;s record showed, the UPI ID and phone from the message.</td>
-</tr>
-<tr>
-<td><strong>Narrator</strong></td>
-<td>&quot;If Riya had already paid, every minute matters. Jaanch doesn&#39;t ask for her bank details — it tells her exactly where to go, and hands her an evidence summary to attach to the complaint.&quot;</td>
-</tr>
-<tr>
-<td><strong>Notice</strong></td>
-<td>Routing only, nothing collected; the summary is ready to paste into 1930 / cybercrime.gov.in.</td>
-</tr>
-</tbody></table>
-<h2>2:40 – 3:15 · In Hindi</h2>
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>Screen</strong></td>
-<td>Laptop, home page → switch to <strong>हिंदी</strong>. Upload <code>demo/screenshots/scam-hi.png</code>. Progress list animates in Hindi. Report headline: <strong>रजिस्ट्रेशन नंबर असली है। बस वह उनका नहीं है।</strong> Stamps: रिकॉर्ड से उलट.</td>
-</tr>
-<tr>
-<td><strong>Narrator</strong></td>
-<td>&quot;Here&#39;s the Hindi version of the pitch — &#39;रोज़ 5% पक्का मुनाफ़ा&#39; — and the report comes back in Hindi, with the same evidence. The numbers and names are inserted exactly; only the explanation is translated, by hand-written templates.&quot;</td>
-</tr>
-<tr>
-<td><strong>Notice</strong></td>
-<td>Identical verdicts in both languages.</td>
-</tr>
-<tr>
-<td><strong>Backup</strong></td>
-<td>If screenshot reading is slow, paste the Hindi text instead (same result while the text model is available).</td>
-</tr>
-</tbody></table>
-<h2>3:15 – 3:45 · How it decides, and why you can trust it</h2>
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>Screen</strong></td>
-<td>One diagram: <strong>LLM reads → tools verify → code adjudicates → LLM explains</strong>, with icons for SEBI registers, RBI Alert List, SEBI rules, and a lock for privacy.</td>
-</tr>
-<tr>
-<td><strong>Narrator</strong></td>
-<td>&quot;An AI model only reads the message and lists its claims — word for word, and anything it can&#39;t point to in the message is thrown away. Official sources do the verifying: SEBI&#39;s registers, refreshed daily and confirmed live, its list of cancelled registrations, RBI&#39;s alert list, and SEBI&#39;s own rules with their circular numbers. Fixed code — not the AI — decides each verdict. If a screenshot is blurry, Jaanch says &#39;can&#39;t check&#39; instead of guessing. And screenshots are deleted the moment they&#39;re read.&quot;</td>
-</tr>
-<tr>
-<td><strong>Notice</strong></td>
-<td>Determinism and provenance, in one sentence each.</td>
-</tr>
-</tbody></table>
-<h2>3:45 – 4:00 · Impact</h2>
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>Screen</strong></td>
-<td>The phone report again, then the Jaanch home page.</td>
-</tr>
-<tr>
-<td><strong>Narrator</strong></td>
-<td>&quot;Every investor in India can take a screenshot. Jaanch turns it into official evidence — in Hindi or English — before the money moves. Paste it. Jaanch investigates it.&quot;</td>
-</tr>
-<tr>
-<td><strong>On screen</strong></td>
-<td><strong>Jaanch — paste it, Jaanch investigates it.</strong> Contributors: Dhruv Sharma · Anushika Chauhan · Pratyush Mishra</td>
-</tr>
-</tbody></table>
-<hr>
-<h2>Recording notes</h2>
+<p><strong>Edit:</strong> Blur the contact email of the real registration holder in the next-steps section.</p>
+<h3>4 · No false alarm (1:30–1:45)</h3>
 <ul>
-<li>Keep the cursor still while the narrator reads a verdict; zoom (not pan) into text.</li>
-<li>Show the real wait once (the first report); trim later waits to 2–3 seconds.</li>
-<li>Never show a real person&#39;s phone number or chats other than the demo chat.</li>
-<li>The impersonation report&#39;s next steps show the contact email from SEBI&#39;s public record for the
-real registration holder (an individual&#39;s work address). Blur it in the edit.</li>
-<li>Subtitles in English; Hindi segment subtitled in both.</li>
-<li>Export 1080p, 30 fps; audio −16 LUFS.</li>
+<li><strong>Screen:</strong> Tab ③ (desktop). Click the <strong>SIP reminder</strong> sample, then <strong>Investigate</strong>. The
+report says there are no investment claims to check, and shows no warnings. Cut the wait.</li>
+<li><strong>Narrator:</strong> &quot;Does it flag everything about money? No. An ordinary SIP reminder raises nothing.
+Fewer false alarms means people keep trusting the warnings.&quot;</li>
+</ul>
+<h3>5 · &quot;I already paid&quot; (1:45–2:05)</h3>
+<ul>
+<li><strong>Screen:</strong> Back on the scam report (backup tab). Click <strong>I already paid</strong>. Show the large
+<strong>Call 1930</strong> button, cybercrime.gov.in, the bank and UPI complaint steps. Click <strong>Copy evidence
+summary</strong> and paste it into Notepad for 2 seconds.</li>
+<li><strong>Narrator:</strong> &quot;If Riya has already paid, she should act fast. Jaanch never asks for her bank
+details or OTP. It tells her where to go, and gives her an evidence summary ready to attach to the
+complaint.&quot;</li>
+</ul>
+<h3>6 · In Hindi (2:05–2:30)</h3>
+<ul>
+<li><strong>Screen:</strong> Tab ③. Switch to <strong>हिंदी</strong>, upload <code>scam-hi.png</code>, click Investigate (cut the wait).
+The headline reads <strong>रजिस्ट्रेशन नंबर असली है। बस वह उनका नहीं है।</strong> and the stamp reads
+<strong>रिकॉर्ड से उलट</strong>.</li>
+<li><strong>Narrator:</strong> &quot;The same pitch in Hindi, &#39;रोज़ 5% पक्का मुनाफ़ा&#39;, gets the same evidence back in
+Hindi. The wording comes from reviewed templates, not free AI text. A voice note works too, for
+people who&#39;d rather speak than type.&quot;</li>
+<li><strong>Edit:</strong> Add English subtitles for the Hindi text on screen.</li>
+</ul>
+<h3>7 · How it works and why you can trust it (2:30–3:05)</h3>
+<ul>
+<li><strong>Screen:</strong> <code>demo/architecture-slide.html</code> full screen (F11), or drop <code>demo/screenshots/architecture.png</code> straight into Clipchamp:
+<strong>LLM reads → tools verify → code decides → LLM explains</strong>, with source icons and a privacy strip.
+In the edit, zoom in slowly on each card as the narration reaches it, then pull back to the
+privacy strip.</li>
+<li><strong>Narrator:</strong> &quot;The AI only reads the message. Any quote it can&#39;t find in the message is
+discarded. Official sources do the checking: SEBI&#39;s 12 registers, refreshed daily, its cancelled
+list, RBI&#39;s Alert List and SEBI&#39;s rules with circular numbers. Fixed code, not AI, decides each
+verdict. If a screenshot is blurry, it says &#39;can&#39;t check&#39; instead of guessing. Screenshots are
+deleted once read, there are no accounts, IP addresses aren&#39;t stored, and it never gives
+investment advice.&quot;</li>
+</ul>
+<h3>8 · Impact and scale (3:05–3:30)</h3>
+<ul>
+<li><strong>Screen:</strong> The phone report, then the home page, then the closing card.</li>
+<li><strong>Narrator:</strong> &quot;Anyone with a phone can take a screenshot. Jaanch turns it into official evidence
+before the money moves. It runs on free-tier hosting today. New languages only need new
+templates, and the WhatsApp channel is already built and waiting for a verified business
+account. Next come NSE/BSE caution lists and mutual-fund distributor checks.&quot;</li>
+<li><strong>Closing card:</strong> <strong>Jaanch · जाँच: paste it, Jaanch investigates it.</strong> Add the live URL, the
+GitHub link and the names Dhruv Sharma · Anushika Chauhan · Pratyush Mishra.</li>
+</ul>
+<hr>
+<h2>How this covers the brief</h2>
+<table>
+<thead>
+<tr>
+<th>Requirement / criterion</th>
+<th>Where</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Problem and target user</td>
+<td>1, 2</td>
+</tr>
+<tr>
+<td>Working prototype, user journey</td>
+<td>3, 4, 5</td>
+</tr>
+<tr>
+<td>Investor resilience and safety</td>
+<td>3, 5</td>
+</tr>
+<tr>
+<td>Bharat-first (Hindi, voice, web)</td>
+<td>3 (no app), 6</td>
+</tr>
+<tr>
+<td>Trust, privacy, guardrails</td>
+<td>3 (no score), 5 (no OTP), 7</td>
+</tr>
+<tr>
+<td>Technical architecture</td>
+<td>7</td>
+</tr>
+<tr>
+<td>Impact and scalability</td>
+<td>8</td>
+</tr>
+</tbody></table>
+<h2>Edit checklist</h2>
+<ul>
+<li>Speed up or cut every wait to under 5 seconds, and label the first one &quot;sped up&quot;. Judges know
+real calls take time.</li>
+<li>Zoom in (Clipchamp &quot;zoom&quot; or Cap&#39;s auto-zoom) whenever the narrator reads a verdict. Keep the
+cursor still.</li>
+<li>Turn on auto-captions in English, then fix the Hindi words by hand.</li>
+<li>Use quiet background music at about −30 dB under the voice, or none.</li>
+<li>Export at 1080p, 30 fps. Keep the length between 3:15 and 3:45.</li>
+<li>Show only the demo chat. No real phone numbers or chats.</li>
 </ul>
 
 </main>

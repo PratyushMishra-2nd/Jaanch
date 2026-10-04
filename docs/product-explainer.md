@@ -1,4 +1,4 @@
-# Jaanch — paste it, Jaanch investigates it
+# Jaanch: paste it, Jaanch investigates it
 
 **Jaanch** (जाँच, "inspection") checks the claims in an investment message against India's
 official records before you send money.
@@ -8,7 +8,7 @@ official records before you send money.
 Retail investors receive investment pitches on WhatsApp, Telegram, SMS and social media. The
 convincing ones borrow credibility:
 
-- a **real SEBI registration number** — that belongs to someone else;
+- a **real SEBI registration number** that belongs to someone else;
 - "SEBI approved" tips, "NSE partner" apps;
 - **guaranteed** daily or monthly returns;
 - "institutional accounts", "FPI accounts", "sure-shot IPO allotment";
@@ -16,7 +16,7 @@ convincing ones borrow credibility:
 
 The investor's real question is simple: _"Before I pay, are the claims in this message backed by
 evidence?"_ Checking that today means knowing which SEBI register to search, how registration
-numbers work, what SEBI's rules say about returns and payments — in English, on a website.
+numbers work, what SEBI's rules say about returns and payments. All of it in English, on a website.
 
 ## What Jaanch does
 
@@ -27,15 +27,15 @@ website. Usually within a minute, Jaanch returns a report:
   **CAN'T CHECK**.
 - **The evidence** behind each one: the SEBI register entry (name, number, validity, official
   email/phone, address), the SEBI rule with its circular and clause, the RBI Alert List entry, the
-  domain's registration date — each with a link to the official page and an "as of" date.
+  domain's registration date. Each comes with a link to the official page and an "as of" date.
 - **Who is contacting you vs who is registered**: a side-by-side table of the message's name,
   number, phone, email and website against the official record.
 - **Warning signs**: pressure tactics, OTP requests, APK links, look-alike websites, personal UPI
-  IDs, accuracy claims — each explained in plain words.
-- **What could not be checked** — always listed, because no problem found is not proof of safety.
+  IDs, accuracy claims. Each is explained in plain words.
+- **What could not be checked**: always listed, because no problem found is not proof of safety.
 - **What to do next**: confirm through the official contact on SEBI's record (not the numbers in
   the message), check the UPI ID on SEBI Check, report the message on Sanchar Saathi (Chakshu).
-- **"I already paid"**: 1930, cybercrime.gov.in, your bank, a UPI fraud complaint, what to keep —
+- **"I already paid"**: 1930, cybercrime.gov.in, your bank, a UPI fraud complaint, what to keep,
   and a copyable evidence summary for your complaint. Jaanch never asks for your bank details.
 
 Everything is available in **English and Hindi**.
@@ -49,25 +49,25 @@ is the party the number belongs to**.
 > INH000011431 / 🔥 Guaranteed 30% monthly returns in F&O 🔥 / Pay ₹4,999 joining fee to UPI:
 > 9876501234@ybl"
 >
-> **CONTRADICTED** — The message says INH000011431 belongs to Sharma Investments. SEBI's register
-> shows INH000011431 is registered to 360 ONE Distribution Services Limited (Mumbai) — a different
+> **CONTRADICTED**: The message says INH000011431 belongs to Sharma Investments. SEBI's register
+> shows INH000011431 is registered to 360 ONE Distribution Services Limited (Mumbai), a different
 > name.
 >
-> **NOT FOUND** — We found no SEBI-registered intermediary named Sharma Investments (register
+> **NOT FOUND**: We found no SEBI-registered intermediary named Sharma Investments (register
 > updated 3 Oct 2026).
 >
-> **CONTRADICTED** — The message claims SEBI registration (Research Analyst) and also promises
+> **CONTRADICTED**: The message claims SEBI registration (Research Analyst) and also promises
 > guaranteed returns. SEBI's rules do not allow registered advisers, analysts or brokers to promise
 > assured returns. _(SEBI Master Circular for Research Analysts, 6 Feb 2026, para 11.1(c)(x))_
 >
-> **CONTRADICTED** — The message asks for payment to 9876501234@ybl for a SEBI-registered service
+> **CONTRADICTED**: The message asks for payment to 9876501234@ybl for a SEBI-registered service
 > (Research Analyst). SEBI requires registered intermediaries to collect UPI payments through
 > validated UPI IDs ending in "@valid…", and their old UPI IDs were to be discontinued.
 > 9876501234@ybl is not such an ID. _(SEBI circular SEBI/HO/DEPA-II/DEPA-II_SRG/P/CIR/2025/86,
 > 11 Jun 2025)_
 
 This is live output on 4 Oct 2026: the AI model read the demo screenshot and the engine checked it
-against SEBI's register (about 30 seconds end to end). The registered firm has nothing to do with the message —
+against SEBI's register (about 30 seconds end to end). The registered firm has nothing to do with the message;
 its number was borrowed. Jaanch reports exactly that: what the record shows, without accusing
 anyone.
 
@@ -85,13 +85,13 @@ LLM READS  →  TOOLS VERIFY  →  CODE ADJUDICATES  →  LLM EXPLAINS
 ```
 
 An AI model reads the screenshot and lists the claims word for word. Jaanch then looks them up in
-SEBI's registers, RBI's Alert List, domain records and a table of SEBI rules, and fixed rules —
-not the AI — decide each verdict. Explanations come from reviewed templates in English and Hindi.
+SEBI's registers, RBI's Alert List, domain records and a table of SEBI rules, and fixed rules
+(not the AI) decide each verdict. Explanations come from reviewed templates in English and Hindi.
 If anything was unclear in the screenshot, Jaanch says it can't check rather than guessing.
 
 ## Built for Bharat
 
-- **Works from the phone** — a light website, no app to install; take a screenshot of the
+- **Works from the phone**: a light website, no app to install; take a screenshot of the
   WhatsApp or Telegram chat and upload it.
 - **Hindi and English**, including Hinglish and Devanagari screenshots; one tap switches language.
 - **Voice notes** (speech-to-text) when supported by the configured provider.
@@ -102,7 +102,7 @@ If anything was unclear in the screenshot, Jaanch says it can't check rather tha
 ## Privacy in one paragraph
 
 Screenshots and voice notes are deleted as soon as they are read. Reports are kept for 7 days so
-the link works, then deleted — or immediately with the "Delete this report" button. No account,
+the link works, then deleted, or deleted immediately with the "Delete this report" button. No account,
 no phone number, and IP addresses are never stored. In this prototype, an NVIDIA-hosted AI model reads screenshots; its
 terms allow logging, so avoid sending images with your own bank or personal details. Details:
 [trust-and-safety.md](trust-and-safety.md).

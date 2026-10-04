@@ -6,11 +6,11 @@ It must never become a source of false confidence, false accusation or financial
 ## Commitments
 
 1. **No overall verdict.** There is no safety score, risk percentage, "safe" badge or "scam"
-   label — not in the data model, the API or the web app. Each claim gets one of four
+   label, not in the data model, the API or the web app. Each claim gets one of four
    verdicts, and "can't check" is always stated explicitly.
 2. **No accusations.** Jaanch says "the message says X; the official record shows Y". It never
    calls a person or firm a scammer or fraudster. When a registration number belongs to someone
-   else, the real holder is presented as what it is — the registered entity — not as a suspect.
+   else, the real holder is presented as what it is (the registered entity), not as a suspect.
 3. **No advice.** Jaanch never recommends buying, selling, holding or investing in anything.
    Next steps are about verifying through official channels and reporting.
 4. **Absence of evidence is not safety.** Every report includes what could not be checked and why.
@@ -39,9 +39,9 @@ Data minimisation by design:
 | ---------------------------------------------------- | ---------------- | -------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
 | Screenshots, voice notes                             | Only until read  | Deleted right after reading (hard expiry 30 min)               | Images re-encoded on upload, which strips EXIF/GPS metadata                                                           |
 | Report (claims, evidence, transcript of the message) | Yes              | 7 days, or immediately with "Delete this report" (owner token) | Unguessable 128-bit report ids                                                                                        |
-| Phone number, name, account                          | Never asked      | —                                                              | No sign-up; nothing identifies the person checking                                                                    |
-| IP address                                           | No               | —                                                              | Rate limiting uses an HMAC of the IP                                                                                  |
-| Amount paid, bank account, transaction ID            | Never asked      | —                                                              | The "I already paid" flow is routing only; bank account numbers found in a message are masked to the last four digits |
+| Phone number, name, account                          | Never asked      | n/a                                                            | No sign-up; nothing identifies the person checking                                                                    |
+| IP address                                           | No               | n/a                                                            | Rate limiting uses an HMAC of the IP                                                                                  |
+| Amount paid, bank account, transaction ID            | Never asked      | n/a                                                            | The "I already paid" flow is routing only; bank account numbers found in a message are masked to the last four digits |
 | Logs                                                 | Operational only | Provider retention                                             | Route patterns instead of URLs, no message bodies, no phone numbers, credentials redacted                             |
 
 **Model provider caveat (prototype).** Screenshots and voice notes are processed by NVIDIA's
@@ -67,7 +67,7 @@ log inputs. The web app and privacy page say so. Before real users rely on Jaanc
 
 - Jaanch checks SEBI-regulated intermediaries and a set of SEBI rules. It cannot check who owns a
   phone number, who runs a Telegram or WhatsApp group, what a link leads to, or whether a
-  promised return will be paid — and says so.
+  promised return will be paid, and says so.
 - Registers are snapshots refreshed daily, confirmed live when a number is missing; a very recent
   change can still be missed (the report shows the as-of date).
 - NSE/BSE caution notices are not machine-readable and are not yet included.
